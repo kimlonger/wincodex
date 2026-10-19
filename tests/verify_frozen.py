@@ -185,7 +185,9 @@ def main():
         assert normalized(archive.extract(name)) == normalized(compile(path.read_bytes(), str(path), "exec")), name
         modules.append(name)
     worker_entry = next(name for name in bundle.toc if name.replace("\\", "/") == "desktop_backend/desktop_worker.py")
-    assert bundle.extract(worker_entry) == (root / "chatcode" / "desktop_worker.py").read_bytes()
+    # Git checkouts can normalize CRLF to LF; preserve exact source text apart from line endings.
+    packaged_worker = bundle.extract(worker_entry).decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+    assert packaged_worker == (root / "chatcode" / "desktop_worker.py").read_text(encoding="utf-8")
     startup = subprocess.run([str(executable), "--version"], capture_output=True, timeout=25,
                              creationflags=subprocess.CREATE_NO_WINDOW)
     assert startup.returncode == 0, startup
