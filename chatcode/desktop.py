@@ -107,7 +107,7 @@ class DesktopBridge:
         self.lock = threading.Lock()
         self.backend, self.bound, self.owner, self.ticket = None, None, None, None
         self.python, self.handle = settings.desktop_python, settings.desktop_window
-        self.project = str(settings.workspace)
+        self.project = str(Path(settings.workspace).resolve())
         self.input = settings.desktop_input and not settings.read_only
         self.paused, self.closed, self.expires = not bool(self.python and self.handle), False, 0
         self.run_id = secrets.token_hex(16)
@@ -149,7 +149,7 @@ class DesktopBridge:
     def bind_local(self, python, handle, project, allow_input=False, activate=True):
         with self.lock:
             self.pause()
-            self.python, self.handle, self.project = python, handle, str(project)
+            self.python, self.handle, self.project = python, handle, str(Path(project).resolve())
             self.input = allow_input and not self.settings.read_only
             try:
                 backend = self._ensure()
@@ -168,6 +168,7 @@ class DesktopBridge:
             backend.close()
 
     def _scope(self, scope):
+        scope = (str(Path(scope[0]).resolve()), scope[1])
         if self.paused or self.closed:
             raise ToolError("DESKTOP_PAUSED", "桌面功能未启用或已在本机暂停")
         if scope[0] != self.project:
@@ -177,12 +178,13 @@ class DesktopBridge:
             self.owner, self.ticket = None, None
         if self.owner is not None and self.owner != scope:
             raise ToolError("DESKTOP_IN_USE", "桌面窗口正由同项目的另一个任务使用；先释放或等待租约到期")
+        return scope
 
     def observe(self, scope, image=True):
         if not self.lock.acquire(blocking=False):
             raise ToolError("DESKTOP_BUSY", "桌面请求正在执行")
         try:
-            self._scope(scope)
+            scope = self._scope(scope)
             result = self._ensure().request("observe", {"image": image})
             if self.paused:
                 raise ToolError("DESKTOP_PAUSED", "观察期间已在本机暂停")
@@ -216,7 +218,7 @@ class DesktopBridge:
         if not self.lock.acquire(blocking=False):
             raise ToolError("DESKTOP_BUSY", "桌面请求正在执行")
         try:
-            self._scope(scope)
+            scope = self._scope(scope)
             if not self.input or self.settings.read_only:
                 raise ToolError("DESKTOP_INPUT_DISABLED", "本机未授权桌面输入")
             key = hashlib.sha256(json.dumps([scope, args["operation_id"]]).encode()).hexdigest()
@@ -262,7 +264,7 @@ class DesktopBridge:
         if not self.lock.acquire(blocking=False):
             raise ToolError("DESKTOP_BUSY", "桌面请求正在执行；本机暂停入口可立即停止")
         try:
-            self._scope(scope)
+            scope = self._scope(scope)
             if self.backend is not None:
                 self.backend.request("release", {})
             self.owner, self.ticket = None, None

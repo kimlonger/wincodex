@@ -49,7 +49,7 @@ class DesktopCase(unittest.TestCase):
     def setUp(self):
         temp = tempfile.TemporaryDirectory(prefix="chatcode-desktop-")
         self.addCleanup(temp.cleanup)
-        self.root = Path(temp.name)
+        self.root = Path(temp.name).resolve()
         env = patch.dict(os.environ, {"CHATCODE_DATA_DIR": str(self.root / "state")})
         env.start()
         self.addCleanup(env.stop)

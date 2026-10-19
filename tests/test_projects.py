@@ -56,7 +56,7 @@ class ProjectCase(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="chatcode-projects-")
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.a, self.b = self.root / "A", self.root / "B"
         for path in (self.a, self.b):
             path.mkdir()
@@ -194,7 +194,7 @@ class SearchAndGitCase(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="chatcode-tools-07-")
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         environment = patch.dict(os.environ, {"CHATCODE_DATA_DIR": str(self.root / "state")})
         environment.start()
         self.addCleanup(environment.stop)

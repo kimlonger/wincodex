@@ -36,7 +36,19 @@ def load_profile(args):
     except (OSError, ValueError, UnicodeError):
         workspace = canonical = str(Path.cwd())
     result.workspace = workspace
-    profile = data.get("profiles", {}).get(canonical, {})
+    profiles = data.get("profiles", {})
+    profile = profiles.get(canonical)
+    if profile is None:
+        # Preserve profiles previously stored using a relative path or a Windows 8.3 alias.
+        for stored_path, stored_profile in reversed(list(profiles.items())):
+            try:
+                if Path(stored_path).resolve() == Path(canonical):
+                    profile = stored_profile
+                    break
+            except (OSError, ValueError, UnicodeError):
+                continue
+    if profile is None:
+        profile = {}
     explicit = getattr(args, "_provided_options", None)
     defaults = build_arg_parser().parse_args([])
     for name, kind in _FIELDS.items():
@@ -76,7 +88,7 @@ def save_profile(settings):
     if not profile["proxy"] or "@" in profile["proxy"]:
         profile["proxy"] = ""
     profiles = data.get("profiles", {})
-    workspace = str(settings.workspace)
+    workspace = str(Path(settings.workspace).resolve())
     profiles.pop(workspace, None)
     profiles[workspace] = profile
     data = {"last_workspace": workspace, "profiles": dict(list(profiles.items())[-20:])}

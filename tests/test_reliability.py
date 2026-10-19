@@ -45,7 +45,7 @@ class ReliabilityCase(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="chatcode-regression-")
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.workspace = self.root / "project"
         self.workspace.mkdir()
         self.env = patch.dict(os.environ, {"CHATCODE_DATA_DIR": str(self.root / "state")})

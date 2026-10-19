@@ -13,7 +13,7 @@ class ProfileCase(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="chatcode-profile-test-")
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         env = patch.dict(os.environ, {"CHATCODE_DATA_DIR": str(self.root / "state")})
         env.start()
         self.addCleanup(env.stop)
@@ -27,6 +27,21 @@ class ProfileCase(unittest.TestCase):
         self.assertEqual(args.port, 9999)
         self.assertTrue(args.no_exec)
         self.assertIn(str(workspace), recents)
+
+    def test_equivalent_paths_share_profiles_and_legacy_aliases_still_load(self):
+        workspace = self.root / "project"
+        workspace.mkdir()
+        alias = workspace / ".." / "project"
+        save_profile(Settings(workspace=alias, port=9876))
+        path = self.root / "state" / "gui_profiles.json"
+        saved = json.loads(path.read_text(encoding="utf-8"))
+        canonical = str(workspace.resolve())
+        self.assertIn(canonical, saved["profiles"])
+        # Simulate the non-canonical profile key written by older releases.
+        saved["profiles"][str(alias)] = saved["profiles"].pop(canonical)
+        path.write_text(json.dumps(saved), encoding="utf-8")
+        args, _ = load_profile(build_arg_parser().parse_args(["--workspace", canonical]))
+        self.assertEqual(args.port, 9876)
 
     def test_explicit_cli_default_value_also_overrides_saved_profile(self):
         workspace = self.root / "project"

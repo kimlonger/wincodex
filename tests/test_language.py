@@ -20,7 +20,7 @@ class LanguageCase(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="chatcode-lsp-test-")
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name) / "project"
+        self.root = Path(self.temp.name).resolve() / "project"
         self.root.mkdir()
         env = patch.dict(os.environ, {"CHATCODE_DATA_DIR": str(self.root.parent / "state")})
         env.start()
