@@ -15,7 +15,7 @@ from pathlib import Path
 from . import __version__
 
 APP_NAME = "chatcode-mcp"
-APP_TITLE = "ChatGPT Code Bridge MCP"
+APP_TITLE = "ChatCodex"
 VERSION = __version__
 
 # MCP 端点。客户端连接的就是 https://<隧道域名>/mcp

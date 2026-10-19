@@ -23,7 +23,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='ChatGPT-Code-Bridge-MCP',
+    name='ChatCodex',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

@@ -1,16 +1,20 @@
-# ChatGPT Code Bridge MCP
+# ChatCodex
 
 **Turn ChatGPT and MCP-capable web chats into local coding assistants.**
 
 Read and edit local code, run tests, review diffs, resume tasks, and switch projects through a local **Model Context Protocol (MCP) server**. The web client supplies the model; this project supplies the local tools and execution state.
 
-[![Tests](https://github.com/kimlonger/chatgpt-code-bridge-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/kimlonger/chatgpt-code-bridge-mcp/actions/workflows/ci.yml)
+[![Tests](https://github.com/kimlonger/chatcodex-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/kimlonger/chatcodex-mcp/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
-[![Windows release](https://img.shields.io/github/v/release/kimlonger/chatgpt-code-bridge-mcp)](https://github.com/kimlonger/chatgpt-code-bridge-mcp/releases/latest)
+[![Windows release](https://img.shields.io/github/v/release/kimlonger/chatcodex-mcp)](https://github.com/kimlonger/chatcodex-mcp/releases/latest)
 
-[中文说明](docs/README.zh-CN.md) · [Windows downloads](https://github.com/kimlonger/chatgpt-code-bridge-mcp/releases/latest) · [Tool reference](docs/TOOLS.md) · [Architecture](docs/ARCHITECTURE.md)
+[中文说明](docs/README.zh-CN.md) · [Windows downloads](https://github.com/kimlonger/chatcodex-mcp/releases/latest) · [Tool reference](docs/TOOLS.md) · [Architecture](docs/ARCHITECTURE.md)
 
 Independent, community-developed software. Not affiliated with OpenAI or Anthropic. Formerly **ChatCode MCP**.
+
+Previously published as **ChatGPT Code Bridge MCP**. The repository and launcher are now named **ChatCodex**; legacy Python module/data identities stay compatible.
+
+For a source-based comparison with WebCodex, see [the comparison notes](docs/COMPARISON-webcodex.zh-CN.md).
 
 ## Why use it?
 
@@ -42,7 +46,7 @@ The desktop automation backend is optional and its GUI controls are currently hi
 
 ## Quick start: Windows executable
 
-1. Download `ChatGPT-Code-Bridge-MCP.exe` from the [latest release](https://github.com/kimlonger/chatgpt-code-bridge-mcp/releases/latest).
+1. Download `ChatCodex.exe` from the [latest release](https://github.com/kimlonger/chatcodex-mcp/releases/latest).
 2. Open it and select a project directory.
 3. Click **启动服务 + 穿透** (“Start service + tunnel”).
 4. Configure your web client's remote MCP app/connector using the complete URL shown by the launcher.
@@ -68,8 +72,8 @@ The full path-mode URL is a credential. Keep it private. Client plan/account req
 Use **Python 3.12 or newer**. The core server uses the standard library.
 
 ```powershell
-git clone https://github.com/kimlonger/chatgpt-code-bridge-mcp.git
-cd chatgpt-code-bridge-mcp
+git clone https://github.com/kimlonger/chatcodex-mcp.git
+cd chatcodex-mcp
 
 # GUI
 python -m chatcode --gui
@@ -135,8 +139,8 @@ Run on Windows with Python 3.12:
 ```powershell
 python -m pip install -r requirements-dev.txt
 python scripts/prepare_build.py
-python -m PyInstaller --noconfirm --distpath dist/v0.11.2 --workpath build/v0.11.2/pyinstaller ChatGPT-Code-Bridge-MCP.spec
-python -B tests/verify_frozen.py dist/v0.11.2/ChatGPT-Code-Bridge-MCP.exe
+python -m PyInstaller --noconfirm --distpath dist/v0.11.3 --workpath build/v0.11.3/pyinstaller ChatCodex.spec
+python -B tests/verify_frozen.py dist/v0.11.3/ChatCodex.exe
 ```
 
 The preparation helper downloads pinned official third-party binaries and checks their hashes. Generated binaries and runtime directories are excluded from Git. See [third_party/README.md](third_party/README.md) for sources and licenses.
@@ -170,6 +174,6 @@ GitHub Actions runs the core suite on Windows. Release notes distinguish tests r
 
 ## Contributing and license
 
-Bug reports, reproducible examples and focused pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](https://github.com/kimlonger/chatgpt-code-bridge-mcp/issues/new/choose).
+Bug reports, reproducible examples and focused pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](https://github.com/kimlonger/chatcodex-mcp/issues/new/choose).
 
 Licensed under **Apache-2.0**. Attribution and third-party information are in [LICENSE](LICENSE), [NOTICE](NOTICE) and [third_party](third_party/README.md).

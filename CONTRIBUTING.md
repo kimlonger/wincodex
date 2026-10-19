@@ -1,14 +1,14 @@
 # Contributing
 
-Thanks for helping improve ChatGPT Code Bridge MCP.
+Thanks for helping improve ChatCodex.
 
 ## Development
 
 Use Windows and Python 3.12+ for the tested development path. The core server and tests use the standard library. Build dependencies are in `requirements-dev.txt`; desktop dependencies are separately pinned in `desktop/requirements.lock`.
 
 ```powershell
-git clone https://github.com/kimlonger/chatgpt-code-bridge-mcp.git
-cd chatgpt-code-bridge-mcp
+git clone https://github.com/kimlonger/chatcodex-mcp.git
+cd chatcodex-mcp
 python -B tests/run.py
 ```
 

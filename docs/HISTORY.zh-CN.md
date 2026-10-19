@@ -1,6 +1,6 @@
 # ChatCode MCP
 
-> 历史开发记录。项目现名 ChatGPT Code Bridge MCP，当前功能与下载入口请阅读 [中文首页](README.zh-CN.md)。本文件中的旧版本路径、界面及验收限制仅对应当时阶段。
+> 历史开发记录。项目现名 ChatCodex，当前功能与下载入口请阅读 [中文首页](README.zh-CN.md)。本文件中的旧版本路径、界面及验收限制仅对应当时阶段。
 
 让 ChatGPT / claude.ai 这类**网页对话**，通过 MCP 协议直接**查看并改造你本地的项目**。
 
