@@ -1,0 +1,48 @@
+ChatGPT Code Bridge MCP (formerly ChatCode MCP)
+Copyright 2026 ChatCode MCP Contributors
+
+This product includes design concepts derived from Coding Tools MCP
+(https://github.com/xyTom/coding-tools-mcp), Copyright Coding Tools MCP
+Contributors, licensed under the Apache License, Version 2.0.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Optional desktop runtime (installed separately, not bundled in the launcher):
+Windows-MCP, Copyright Jeomon George / CursorTouch contributors, MIT License.
+Reference: https://github.com/CursorTouch/Windows-MCP
+Pinned source: 128f2960c79b74bd2630f4dbc9d4f664f4ce89b3 (0.8.8).
+Its windows_mcp.uia package identifies Python-UIAutomation-for-Windows,
+Copyright yinkaisheng, Apache License 2.0, as its upstream source.
+Reference: https://github.com/yinkaisheng/Python-UIAutomation-for-Windows
+The separately installed packages retain their own license metadata.
+Python embedded runtime
+-----------------------
+The Windows release includes the official CPython 3.14.7 embeddable x64 runtime
+for AppContainer command execution. Copyright Python Software Foundation and
+contributors. Distributed under the Python license; the complete license is
+included at bin/python-sandbox/LICENSE.txt inside the release bundle.
+Source and binary release: https://www.python.org/downloads/release/python-3147/
+Download SHA256: d297e5ff019966817ad8502465176139f2d3d840fa4ed84b13bed399a6ab1f15
+
+Bundled tunnel and launcher tooling
+----------------------------------
+The Windows release bundles the official cloudflared 2026.10.1 binary,
+Copyright Cloudflare, Inc. and contributors, under Apache License 2.0.
+Source: https://github.com/cloudflare/cloudflared/tree/2026.10.1
+Binary SHA256: 4d2490e74082c5d48dbfedaf92576fa5bd1702379ab88eb7faa0cfbe8dc891b6
+The original license is included in third_party/cloudflared-LICENSE.txt.
+
+The launcher is built with PyInstaller 6.21.0. Its bootloader is distributed
+under PyInstaller's GPL license with the stated distribution exception.
+The complete license and exception are in third_party/PyInstaller-LICENSE.txt.
+The full CPython license is also available at third_party/CPython-LICENSE.txt.

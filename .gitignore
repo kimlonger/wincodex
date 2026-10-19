@@ -1,0 +1,33 @@
+# Generated builds, downloaded third-party runtimes and local release evidence
+/build/
+/dist/
+/bin/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+Thumbs.db
+
+# Local credentials, task copies, logs and editor settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.log
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+.chatcode-tmp/
+.chatcode-data/
+.idea/
+.vscode/

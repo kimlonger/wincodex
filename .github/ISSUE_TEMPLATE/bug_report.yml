@@ -1,0 +1,22 @@
+name: Bug report / 问题反馈
+description: Report a reproducible problem without sharing credentials.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version and operating system / 版本与系统
+      placeholder: v0.11.2, Windows 11 x64
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      description: Include expected and actual behavior. Replace MCP URL credentials and tokens with REDACTED.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs / 脱敏日志
+      description: Do not include real source code, private paths or screenshots unless you intend to make them public.

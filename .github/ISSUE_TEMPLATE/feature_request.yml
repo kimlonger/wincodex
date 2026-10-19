@@ -1,0 +1,14 @@
+name: Feature request / 功能建议
+description: Describe the coding workflow you want to improve.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Workflow and problem / 使用场景与问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / 期望行为
+      description: Explain what success looks like and any alternatives you tried.

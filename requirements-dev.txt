@@ -1,0 +1,3 @@
+# Core server and tests use the Python standard library.
+# PyInstaller is needed only for the Windows executable build.
+pyinstaller==6.21.0
