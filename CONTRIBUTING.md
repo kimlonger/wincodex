@@ -1,14 +1,14 @@
 # Contributing
 
-Thanks for helping improve ChatCodex.
+Thanks for helping improve WinCodex.
 
 ## Development
 
 Use Windows and Python 3.12+ for the tested development path. The core server and tests use the standard library. Build dependencies are in `requirements-dev.txt`; desktop dependencies are separately pinned in `desktop/requirements.lock`.
 
 ```powershell
-git clone https://github.com/kimlonger/chatcodex-mcp.git
-cd chatcodex-mcp
+git clone https://github.com/kimlonger/wincodex.git
+cd wincodex
 python -B tests/run.py
 ```
 

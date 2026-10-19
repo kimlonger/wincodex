@@ -1,18 +1,22 @@
-# ChatCodex
+# WinCodex
 
-**Turn ChatGPT and MCP-capable web chats into local coding assistants.**
+**Take web AI beyond the chat box. Put it to work on your Windows projects.**
 
-Read and edit local code, run tests, review diffs, resume tasks, and switch projects through a local **Model Context Protocol (MCP) server**. The web client supplies the model; this project supplies the local tools and execution state.
+A local coding engine for ChatGPT and MCP-capable web AI — from reading your codebase to editing files, running tests, and delivering changes you can review and apply.
 
-[![Tests](https://github.com/kimlonger/chatcodex-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/kimlonger/chatcodex-mcp/actions/workflows/ci.yml)
+**Your web AI supplies the intelligence. WinCodex gives it the tools to act.**
+
+Built for **Windows**. Connected through **Model Context Protocol (MCP)**. **No model API key. No Docker.** Keep working with your chosen web chat while WinCodex connects it to your local development environment.
+
+[![Tests](https://github.com/kimlonger/wincodex/actions/workflows/ci.yml/badge.svg)](https://github.com/kimlonger/wincodex/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
-[![Windows release](https://img.shields.io/github/v/release/kimlonger/chatcodex-mcp)](https://github.com/kimlonger/chatcodex-mcp/releases/latest)
+[![Windows release](https://img.shields.io/github/v/release/kimlonger/wincodex)](https://github.com/kimlonger/wincodex/releases/latest)
 
-[中文说明](docs/README.zh-CN.md) · [Windows downloads](https://github.com/kimlonger/chatcodex-mcp/releases/latest) · [Tool reference](docs/TOOLS.md) · [Architecture](docs/ARCHITECTURE.md)
+[中文说明](docs/README.zh-CN.md) · [Windows downloads](https://github.com/kimlonger/wincodex/releases/latest) · [Tool reference](docs/TOOLS.md) · [Architecture](docs/ARCHITECTURE.md)
 
 Independent, community-developed software. Not affiliated with OpenAI or Anthropic. Formerly **ChatCode MCP**.
 
-Previously published as **ChatGPT Code Bridge MCP**. The repository and launcher are now named **ChatCodex**; legacy Python module/data identities stay compatible.
+Previously published as **ChatGPT Code Bridge MCP**. The repository and launcher are now named **WinCodex**; legacy Python module/data identities stay compatible.
 
 For a source-based comparison with WebCodex, see [the comparison notes](docs/COMPARISON-webcodex.zh-CN.md).
 
@@ -46,7 +50,7 @@ The desktop automation backend is optional and its GUI controls are currently hi
 
 ## Quick start: Windows executable
 
-1. Download `ChatCodex.exe` from the [latest release](https://github.com/kimlonger/chatcodex-mcp/releases/latest).
+1. Download `WinCodex.exe` from the [latest release](https://github.com/kimlonger/wincodex/releases/latest).
 2. Open it and select a project directory.
 3. Click **启动服务 + 穿透** (“Start service + tunnel”).
 4. Configure your web client's remote MCP app/connector using the complete URL shown by the launcher.
@@ -72,8 +76,8 @@ The full path-mode URL is a credential. Keep it private. Client plan/account req
 Use **Python 3.12 or newer**. The core server uses the standard library.
 
 ```powershell
-git clone https://github.com/kimlonger/chatcodex-mcp.git
-cd chatcodex-mcp
+git clone https://github.com/kimlonger/wincodex.git
+cd wincodex
 
 # GUI
 python -m chatcode --gui
@@ -139,8 +143,8 @@ Run on Windows with Python 3.12:
 ```powershell
 python -m pip install -r requirements-dev.txt
 python scripts/prepare_build.py
-python -m PyInstaller --noconfirm --distpath dist/v0.11.3 --workpath build/v0.11.3/pyinstaller ChatCodex.spec
-python -B tests/verify_frozen.py dist/v0.11.3/ChatCodex.exe
+python -m PyInstaller --noconfirm --distpath dist/v0.11.3 --workpath build/v0.11.3/pyinstaller WinCodex.spec
+python -B tests/verify_frozen.py dist/v0.11.3/WinCodex.exe
 ```
 
 The preparation helper downloads pinned official third-party binaries and checks their hashes. Generated binaries and runtime directories are excluded from Git. See [third_party/README.md](third_party/README.md) for sources and licenses.
@@ -159,11 +163,11 @@ python -B tests/verify_java_go.py
 python -B tests/verify_large_index.py
 ```
 
-GitHub Actions runs the core suite on Windows. Release notes distinguish tests run on that release from evidence retained from earlier versions. Local verification covered 168 unit tests (167 passed, one platform-specific skip), 44 HTTP smoke checks, an actual connected-MCP coding workflow, and native sandbox HTTPS/file/process/resource checks before the public release preparation.
+GitHub Actions runs the core suite on Windows. Release notes distinguish tests run on that release from evidence retained from earlier versions. Local verification covered 169 unit tests (168 passed, one platform-specific skip), 44 HTTP smoke checks, an actual connected-MCP coding workflow, and native sandbox HTTPS/file/process/resource checks before the public release preparation.
 
 ## Compatibility and current limits
 
-- The packaged release targets **Windows x64**. Other operating systems are source-only and have not received the same release acceptance.
+- The packaged release targets **Windows x64**. Windows is the only supported operating system; Linux and macOS are outside the product scope.
 - ChatGPT connectivity has been exercised through a connected MCP app. Other remote-MCP clients need their own compatibility verification.
 - Transport is HTTP POST with JSON responses; this implementation does not offer SSE.
 - Switching projects preserves a running endpoint. Restarting a free Quick Tunnel can change its hostname; use a configured fixed-domain tunnel for a stable address.
@@ -174,6 +178,6 @@ GitHub Actions runs the core suite on Windows. Release notes distinguish tests r
 
 ## Contributing and license
 
-Bug reports, reproducible examples and focused pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](https://github.com/kimlonger/chatcodex-mcp/issues/new/choose).
+Bug reports, reproducible examples and focused pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [issue templates](https://github.com/kimlonger/wincodex/issues/new/choose).
 
 Licensed under **Apache-2.0**. Attribution and third-party information are in [LICENSE](LICENSE), [NOTICE](NOTICE) and [third_party](third_party/README.md).

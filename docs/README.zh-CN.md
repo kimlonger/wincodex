@@ -1,12 +1,18 @@
-# ChatCodex
+# WinCodex
 
-**通过 MCP，把 ChatGPT 等网页对话连接到你的本地项目，完成代码阅读、修改、运行测试与交付。**
+**让网页 AI 走出聊天框，在 Windows 上真正写代码。**
 
-[English](../README.md) · [Windows 下载](https://github.com/kimlonger/chatcodex-mcp/releases/latest) · [工具列表](TOOLS.md) · [架构说明](ARCHITECTURE.md)
+给网页 AI 装上本地开发引擎。通过 MCP，让 ChatGPT 等网页 AI 直接读取项目、修改代码、执行命令、运行测试，把对话推进到可审查、可合入的代码改动。
+
+**网页 AI 负责思考，WinCodex 提供动手的能力。无需模型 API Key，无需 Docker。**
+
+[English](../README.md) · [Windows 下载](https://github.com/kimlonger/wincodex/releases/latest) · [工具列表](TOOLS.md) · [架构说明](ARCHITECTURE.md)
 
 项目原名 ChatCode MCP，当前版本 **v0.11.3**，采用 **Apache-2.0** 开源许可。独立社区项目，与 OpenAI、Anthropic 无隶属关系。
 
 ## 项目定位
+
+**仅支持 Windows，面向单机本地开发；不规划 Linux 或 macOS 版本。**
 
 网页客户端提供模型推理，本地程序提供文件、命令、项目上下文和任务执行能力。你可以在网页里提出需求，让模型通过 MCP 读取真实代码、修改文件、运行检查，并给出可核对的结果。
 
@@ -32,7 +38,7 @@
 
 ## Windows 用户快速开始
 
-1. 在 [Releases](https://github.com/kimlonger/chatcodex-mcp/releases/latest) 下载 `ChatCodex.exe`。
+1. 在 [Releases](https://github.com/kimlonger/wincodex/releases/latest) 下载 `WinCodex.exe`。
 2. 打开程序，选择要处理的项目目录。
 3. 点击“启动服务 + 穿透”，等待显示公网 MCP 地址。
 4. 在支持远程 MCP 的网页客户端中添加应用/连接器，填写程序显示的完整地址。
@@ -47,8 +53,8 @@ Windows x64 发行包内置基础 Python 运行时和隧道程序，**不需要�
 需要 Python 3.12+，核心服务使用标准库：
 
 ```powershell
-git clone https://github.com/kimlonger/chatcodex-mcp.git
-cd chatcodex-mcp
+git clone https://github.com/kimlonger/wincodex.git
+cd wincodex
 python -m chatcode --gui
 
 # 命令行启动
@@ -92,8 +98,8 @@ native 已允许公网出站，仍限制私有文件访问、进程树、内存�
 python -B tests/run.py
 python -m pip install -r requirements-dev.txt
 python scripts/prepare_build.py
-python -m PyInstaller --noconfirm --distpath dist/v0.11.3 --workpath build/v0.11.3/pyinstaller ChatCodex.spec
-python -B tests/verify_frozen.py dist/v0.11.3/ChatCodex.exe
+python -m PyInstaller --noconfirm --distpath dist/v0.11.3 --workpath build/v0.11.3/pyinstaller WinCodex.spec
+python -B tests/verify_frozen.py dist/v0.11.3/WinCodex.exe
 ```
 
 构建脚本从官方来源准备固定版本二进制并校验哈希；生成文件不进入 Git。真实原生沙箱、语言工具链和桌面集成脚本需要显式运行，其中部分会联网或创建测试窗口，不属于普通源码测试的隐含操作。

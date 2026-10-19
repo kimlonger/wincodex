@@ -75,7 +75,7 @@ def run_cli(args: argparse.Namespace) -> int:
         prefix = "" if message.startswith("[") else "[chatcode] "
         print(f"{prefix}{message}", flush=True)
 
-    print("ChatCodex — Web chat to local code")
+    print("WinCodex — Web chat to local code")
     print(f"{APP_TITLE} v{__import__('chatcode').__version__}")
     print(f"工作区：{settings.workspace}")
 

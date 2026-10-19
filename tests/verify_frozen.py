@@ -1,7 +1,7 @@
 """验证正式 exe 内的源码、SQLite 任务链路与 multiprocessing 正则搜索。
 
-仅在 Windows 构建后运行；不打开 GUI、不建立公网连接。
-python tests/verify_frozen.py dist/v0.10.0/ChatCode启动器.exe
+仅在 Windows 构建后运行；GUI 隐藏验证，原生沙箱会访问公网 HTTPS。
+python tests/verify_frozen.py dist/v0.11.3/WinCodex.exe
 """
 
 import argparse
